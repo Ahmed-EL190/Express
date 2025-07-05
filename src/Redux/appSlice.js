@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: [],
+  likedProducts: [],
   UserInfo: null,
 };
 
@@ -46,7 +47,23 @@ export const appSlice = createSlice({
       );
     }
   },
-
+  toggleLike: (state, action) => {
+      const productId = action.payload;
+      const productIndex = state.products.findIndex(item => item.id === productId);
+      
+      if (productIndex !== -1) {
+        // تبديل حالة الإعجاب
+        const isLiked = !state.products[productIndex].isLiked;
+        
+        
+        // إضافة/إزالة من قائمة الإعجابات
+        if (isLiked) {
+          state.likedProducts.push(state.products[productIndex]);
+        } else {
+          state.likedProducts = state.likedProducts.filter(item => item.id !== productId);
+        }
+      }
+    }
 
   }
 });
@@ -60,6 +77,7 @@ export const {
   decrementQuantity,
   clearCart,
   deleteFromCart,
+  toggleLike,
   
 } = appSlice.actions;
 

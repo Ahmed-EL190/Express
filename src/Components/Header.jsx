@@ -1,13 +1,11 @@
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SlBasket } from "react-icons/sl";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { FiLogOut, FiSearch } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
 import { logOutUser } from "../Redux/appSlice";
-
 
 const Header = () => {
   const userInfo = useSelector((state) => state.appReducer.UserInfo);
@@ -24,9 +22,12 @@ const Header = () => {
         console.log(error);
       });
   };
+  const goToProfilePage = () => {
+    navigate("/profilePage");
+  };
 
-  const goToRegister = () => {
-    navigate("/RegistrationPage");
+  const goToSignin = () => {
+    navigate("/Signin");
   };
 
   const goToCart = () => {
@@ -86,26 +87,35 @@ const Header = () => {
 
       {/* User icons */}
       <div className="flex gap-3">
-        <div className="flex space-x-4 no-underline text-black text-sm sm:text-xs items-center">
+        <div className="flex space-x-3 no-underline text-black text-sm sm:text-xs items-center">
+          
           {userInfo ? (
             <span>{userInfo.userName}</span>
           ) : (
             <button
-              onClick={goToRegister}
+              onClick={goToSignin}
               className="text-black hover:scale-110 transition duration-300"
             >
               <FaRegUser className="text-black text-lg" />
             </button>
           )}
         </div>
+        {/* profilePage  */}
+        <div className="items-center mt-2">
+            <button
+              onClick={goToProfilePage}
+              className="text-black hover:scale-110 transition duration-300"
+            >
+              <FaRegHeart className=" text-lg " />
+            </button>
+          </div>
 
         <div className="flex space-x-4 items-center">
           <button
             onClick={goToCart}
             className="text-black hover:scale-110 transition duration-300"
           >
-            <SlBasket className="text-black text-lg relative" /> 
-            
+            <SlBasket className="text-black text-lg relative" />
           </button>
 
           {userInfo && (

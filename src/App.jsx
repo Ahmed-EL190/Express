@@ -14,6 +14,7 @@ import Signin from "./Authencation/Signin";
 import Cart from "./Components/Cart"; // تأكد من أن هذا استيراد بدون .jsx
 import ProductsData from "./Api/api";
 import RegistrationPage from "./Authencation/RegistrationPage";
+import ProfilePage from "./Pages/profilePage";
 
 const Layout = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           <Route index element={<Home />} loader={() => ProductsData()} />
           <Route path="/cart" element={<Cart />} />
         </Route>
+        <Route path="/ProfilePage" element={<ProfilePage />} /> 
         <Route path="/Signin" element={<Signin />} />
         <Route path="/RegistrationPage" element={<RegistrationPage/>}/>
       </Route>

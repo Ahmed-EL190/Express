@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Redux/appSlice";
 
@@ -42,7 +42,7 @@ const Signin = () => {
         className="bg-white p-8 rounded-xl shadow-md w-full max-w-md"
       >
         <h2 className="text-2xl font-bold mb-6 text-center text-indigo-600">
-          Register
+          Login
         </h2>
 
         <div className="mb-4">
@@ -72,9 +72,20 @@ const Signin = () => {
         >
           Sign In
         </button>
+        
+        <div className="text-center text-sm py-3">
+          <p className="text-gray-600">
+            Don't have an account?{' '}
+            <Link to="/RegistrationPage" className="font-medium text-blue-600 hover:text-blue-500 no-underline"  >
+              Sign up
+            </Link>
+          </p>
+        </div>
       </form>
     </div>
   );
 };
 
 export default Signin;
+
+
